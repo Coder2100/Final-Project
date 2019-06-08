@@ -1,0 +1,104 @@
+          *{
+	       width: 100%
+		    height:auto;
+		    }
+
+		body{
+			background-color: white;
+		}
+		.nav{
+			overflow: scroll;
+
+		}
+		.nav li a{
+			color: white;
+			text-decoration: none;
+			text-align: center;
+		}
+
+		.nav li{
+			padding: 15px 19px;
+			float: left;
+			font-size: 17px;
+		}
+
+		.nav li:hover{
+			background-color: black;
+			transition: background-color 2s ease-out;	
+		}
+
+		ul{
+			list-style: none;
+			width: 100%;
+		}
+
+		.logo{
+			background-color: black;
+			padding-left:10px;
+			padding-right:10px;
+			padding-top:10px;
+			padding-bottom: 10px;
+			margin-top: 7px;
+			margin-right: 170px;
+			margin-bottom: 7px;
+		}
+		.container{
+			position: absolute;
+			margin:10px;
+			padding-left: 10px;
+			padding-right: 20px;
+		
+		}
+
+		.homepage_header{
+			min-height: 450px;
+			background-color: red;
+			padding: fixed;
+			background-attachment: fixed !important;
+			background-image:linear-gradient(to bottom right, #ff3399, yellow)
+
+
+		}
+
+		h1{	
+		text-align: center;
+		}
+
+		.investing{
+			text-align: center;
+			padding-top: 25px;
+			padding-left: 27px;
+			font-weight: normal;
+		}
+
+		.descripion{
+			font-size: 20px;
+		}
+		
+		#more a{
+			text-decoration: none;
+			color: #ff3399;
+		}
+
+		.product_image{
+			width: 100%;
+			height: auto;
+		}
+
+		@media (min-width: 500px) {
+                h1::before {
+                    content: "Global Equity Fund | JSE TOP40 Index";
+                }
+            }
+
+            @media (max-width: 499px) {
+                h1::before {
+                    content: "Global Equity Fund";
+                }
+                .descripion, .indices{
+                	font-size: 15px;
+                }
+                .indices{
+                	font-weight: bold;
+                }
+            }

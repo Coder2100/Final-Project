@@ -1,0 +1,44 @@
+%underline{
+	height: 15px;
+	width: 100%;
+}
+
+.underlined_products{
+	@extend %underline;
+	background-color: red;
+}
+
+.underlined_performance{
+	@extend %underline;
+	background-color: green;
+}
+
+.underlined_fees{
+	@extend %underline;
+	background-color: teal;
+}
+
+body{
+	font-size: 15px;
+	color: black;
+	font-family: Verdana, Geneva, sans-serif;
+
+	h4{
+	color: orange;
+	}
+	th{
+	color:#ff3399;
+	}
+}
+
+$elliot_color: white;
+$elliot_background_color: #ff3399;
+
+.footer{
+	background-color: $elliot_background_color;
+	color: $elliot_color;
+	height: 150px;
+	width: 100%;
+	padding-left: 25px;
+	padding-top: 20px;
+}

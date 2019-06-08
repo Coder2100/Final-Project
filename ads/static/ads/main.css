@@ -1,0 +1,39 @@
+.underlined_fees, .underlined_performance, .underlined_products {
+  height: 15px;
+  width: 100%;
+}
+
+.underlined_products {
+  background-color: red;
+}
+
+.underlined_performance {
+  background-color: green;
+}
+
+.underlined_fees {
+  background-color: teal;
+}
+
+body {
+  font-size: 15px;
+  color: black;
+  font-family: Verdana, Geneva, sans-serif;
+}
+body h4 {
+  color: orange;
+}
+body th {
+  color: #ff3399;
+}
+
+.footer {
+  background-color: #ff3399;
+  color: white;
+  height: 150px;
+  width: 100%;
+  padding-left: 25px;
+  padding-top: 20px;
+}
+
+/*# sourceMappingURL=main.css.map */
