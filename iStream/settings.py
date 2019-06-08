@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'entertainments.apps.EntertainmentsConfig',
+    #'plans.apps.PlansConfig',
+    'plans.apps.PlansConfig',
     'ads.apps.AdsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -63,6 +66,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # add for media root
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -119,3 +124,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+#Added to keep media files
+MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
+MEDIA_URL= '/media/'
+
+# Stripe keys
+
+
+if DEBUG:
+    STRIPE_PUBLISHABLE_KEY = 'pk_test_n0FO4VB28SaCA87naLPJ8lft'
+    STRIPE_SECRET_KEY = 'sk_test_yEFWvn0Ao2NUjFenAxUVcBOA'
+
+else:
+    # live keys
+    STRIPE_PUBLISHABLE_KEY = 'pk_test_n0FO4VB28SaCA87naLPJ8lft'
+    STRIPE_SECRET_KEY = 'sk_test_yEFWvn0Ao2NUjFenAxUVcBOA'
+
