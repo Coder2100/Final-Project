@@ -1,14 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
-</head>
-<body>
-    <h1>Hello world form Profile</h1>
-</body>
-</html>
+{% extends 'ads/base.html' %}
+
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<h1>My Profile</h1>
+		<div class="col-sm-4 col-md-4">
+			{% if user_subscription != None %}
+				<h4>Current Plan: {{ user_plan.plan.plan_type }} <small>since {{ user_subscription.get_created_date }}</small></h4>
+
+				{% if user_subscription.active != False %}
+					<p>Next payment due: {{ user_subscription.get_next_billing_date }}</p>
+					<a href="{% url 'plans:cancel' %}">Cancel subscription</a>
+
+				{% else %}
+					<p>You don't have an active plan plan. Check them out here 
+						<a href="{% url 'plans:select' %}"></a>
+					</p>
+				{% endif %}
+			{% endif %}
+		</div>
+	</div>
+</div>	
+{% endblock content %}

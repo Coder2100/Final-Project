@@ -10,14 +10,15 @@ from django.contrib.auth import (
     logout,
 )
 from .forms import MyUserLoginForm, MyUserRegistrationForm
-from . models import Profile
-from plans.models import Plan, UserPlan, Subscription
+#from . models import Profile
+#from plans.models import Plan, UserPlan, Subscription
+"""
 from plans.views import (
     get_user_plan,
     get_user_subscription,
     get_selected_plan
 )
-
+"""
 
 # Create your views here.
 
@@ -60,13 +61,5 @@ def register(request):
 def logout_view(request):
     logout(request)
     return redirect('ads:index')
-@login_required(login_url='accounts:login')
-def profile_view(request):
-    user_plan = get_user_plan(request)
-    user_subscription = get_user_subscription(request)
-    context = {
-        'user_plan': user_plan,
-        'user_subscription': user_subscription
-    }
- 
-    return render(request, "plans/profile.html", context)
+
+

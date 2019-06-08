@@ -37,7 +37,7 @@ class UserPlan(models.Model):
         return f"{self.user.username}"
 def post_saveuserplan_create(sender, instance, created, *args, **kwargs):
     user_plan, creted = UserPlan.objects.get_or_create(user=instance)
-#logic to default membership to free if the user has not subscribed to any plan
+#logic to default Plan option to free if the user has not subscribed to any plan
     if user_plan.stripe_customer_id is None or user_plan.stripe_customer_id == '':
         new_customer_id = stripe.Customer.create(email=instance.email)
         free_plan = Plan.objects.get(plan_type='Free')
