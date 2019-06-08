@@ -1,0 +1,65 @@
+{% extends "ads/base.html" %}
+
+{% block title%}
+Register
+{% endblock title%}
+{% block content %}
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f1f1f1;
+}
+
+#loginForm {
+  background-color: #ffffff;
+  margin: 100px auto;
+  font-family: Raleway;
+  padding: 40px;
+  width: 30%;
+  min-width: 300px;
+}
+
+h1 {
+  text-align: center;  
+}
+
+input {
+  padding: 10px;
+  width: 100%;
+  font-size: 17px;
+  font-family: Raleway;
+  border: 1px solid #aaaaaa;
+  margin: 10px;
+}
+
+#submitButton {
+  background-color: #239346;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-family: Raleway;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+</style>
+<form id="loginForm" action="{% url 'accounts:register' %}" method="POST">
+  {% csrf_token %}
+  <h1>Register:</h1>
+  {% csrf_token %}
+  {{ form }}
+  <div style="overflow:auto;">
+    <div style="float:left;">
+      <button type="submit" id="submitButton">Submit</button>
+    </div>
+  </div>
+</form>
+{% endblock content%}

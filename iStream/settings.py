@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'entertainments.apps.EntertainmentsConfig',
-    #'plans.apps.PlansConfig',
+    'accounts.apps.AccountsConfig',
     'plans.apps.PlansConfig',
     'ads.apps.AdsConfig',
     'django.contrib.admin',

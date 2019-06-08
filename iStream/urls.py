@@ -20,9 +20,13 @@ from django.conf.urls import url, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("ads.urls")),
-   #path("", include("entertainments.urls")),
+    path("", include("plans.urls")),
+    path("", include("accounts.urls")),
+   # path('profile/', profile_view, name='profile'),
 ]+static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
 
