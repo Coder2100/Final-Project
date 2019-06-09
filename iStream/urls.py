@@ -26,10 +26,11 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("ads.urls")),
-    path("", include("plans.urls")),
+   # path('', include('plans.urls')),
     path("", include("accounts.urls")),
-    path("", include("entertainments.urls")),
-   # path('profile/', profile_view, name='profile'),
+    #path("", include("entertainments.urls")),
+    path('entertainments/', include('entertainments.urls', namespace='entertainments')),
+    path('plans/', include('plans.urls', namespace='plans')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,

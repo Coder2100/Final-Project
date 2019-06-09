@@ -36,7 +36,7 @@ def get_selected_plan(request):
         return selected_plan_querySet.first()
     return None
 
-    # required auth
+   
 
 @login_required(login_url='accounts:login')
 
@@ -49,14 +49,14 @@ def profile_view(request):
     }
  
     return render(request, "plans/profile.html", context)
-
+"""
 class PlanSelectView(LoginRequiredMixin, ListView):
     model = Plan
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        current_plan = get_user_plan(self.required)
+        current_plan = get_user_plan(self.request)
         context['current_plan'] = str(current_plan.plan)
-        return context
+        return render(self, "plans/plan_list.html", context)
 
     def post(self, request, **kwargs):
         user_plan = get_user_plan(request)
@@ -67,18 +67,47 @@ class PlanSelectView(LoginRequiredMixin, ListView):
 
         if user_plan.plan == selected_plan:
             if user_subscription is not None:
-                messages.info(request, """ This is your current Plan option. Your next payment date {} """.format('get this value from stipe'))
-                return HttpResponseRedirect(request,META.get('HTTP_REFERER'))
+                messages.info(request, """# This is your current Plan option. Your next payment date {} """.format('get this value from stipe'))
+                #return HttpResponseRedirect(request,META.get('HTTP_REFERER'))
+                
+            
+# assign a session
+            #request.session['selected_plan_type'] = selected_type.plan_type
+           # return HttpResponseRedirect(reverse('plans:payment'))"""
+class PlanSelectView(LoginRequiredMixin, ListView):
+    model = Plan
 
-            request.session['selected_plan_type'] = selected_type.plan_type
-            return HttpResponseRedirect(reverse('plans:payment'))
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        current_plan = get_user_plan(self.request)
+        context['current_plan'] = str(current_plan.plan)
+        return context
+
+    def post(self, request, **kwargs):
+        user_plan = get_user_plan(request)
+        user_subscription = get_user_subscription(request)
+        selected_plan_type = request.POST.get('plan_type')
+
+        selected_plan = Plan.objects.get(
+            plan_type=selected_plan_type)
+
+        if user_plan.plan == selected_plan:
+            if user_subscription is not None:
+                messages.info(request, """You already have this membership. Your
+                              next payment is due {}""".format('get this value from stripe'))
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+        # assign to the session
+        request.session['selected_plan_type'] = selected_plan.plan_type
+
+        return HttpResponseRedirect(reverse('plans:payment'))
 
 def PaymentView(request):
     user_plan = get_user_plan(request)
     try:
         selected_plan = get_selected_plan(request)
     except:
-        return redict(reverse("plans:select"))
+        return redirect(reverse("plans:select"))
     publishKey = settings.STRIPE_PUBLISHABLE_KEY
     if request.method == "POST":
         try:
