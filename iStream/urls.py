@@ -28,6 +28,7 @@ urlpatterns = [
     path("", include("ads.urls")),
     path("", include("plans.urls")),
     path("", include("accounts.urls")),
+    path("", include("entertainments.urls")),
    # path('profile/', profile_view, name='profile'),
 ]+static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
 

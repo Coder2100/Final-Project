@@ -25,7 +25,6 @@ class Plan(models.Model):
     def __str__(self):
         return self.plan_type
 
-        return self.user.username
 
 class UserPlan(models.Model):
     user = user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -35,16 +34,19 @@ class UserPlan(models.Model):
 
     def __str__(self):
         return f"{self.user.username}"
-def post_saveuserplan_create(sender, instance, created, *args, **kwargs):
+
+def post_save_userplan_create(sender, instance, created, *args, **kwargs):
     user_plan, creted = UserPlan.objects.get_or_create(user=instance)
 #logic to default Plan option to free if the user has not subscribed to any plan
     if user_plan.stripe_customer_id is None or user_plan.stripe_customer_id == '':
         new_customer_id = stripe.Customer.create(email=instance.email)
-        free_plan = Plan.objects.get(plan_type='Free')
-        user_plan.stripe_customer_id = new_custmer_id['id']
-        user_plan.plan = free_plan
+        free_plan = Membership.objects.get(membership_type='Free')
+        user_plan.stripe_customer_id = new_customer_id['id']
+        user_plan.membership = free_plan
         user_plan.save()
-post_save.connect(post_saveuserplan_create, sender=settings.AUTH_USER_MODEL)
+
+post_save.connect(post_save_userplan_create, sender=settings.AUTH_USER_MODEL)
+
 
 
 class Subscription(models.Model):
