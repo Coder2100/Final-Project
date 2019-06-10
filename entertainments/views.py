@@ -9,6 +9,13 @@ from .models import Entertainment, Movie
 #class based view
 class EntertainmentListView(ListView):
     model = Entertainment
+   
+def EntertainmentList(request):
+    context = {
+        #"entertainments":Entertainment.objects.all() 
+        "entertainments": Entertainment.objects.all()
+    }
+    return render(request, "entertainments/entertainment_list", context)
 
 class EntertainmentDetailView(DetailView):
     model = Entertainment

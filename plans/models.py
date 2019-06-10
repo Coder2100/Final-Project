@@ -20,7 +20,7 @@ class Plan(models.Model):
         choices=PLAN_CHOICES,
         default='Free',
         max_length=30)
-    price = models.IntegerField(default=15)
+    price = models.DecimalField(max_digits=6,decimal_places=2)
     stripe_plan_id = models.CharField(max_length=40)
 
     def __str__(self):
