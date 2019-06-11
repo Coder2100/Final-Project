@@ -2,7 +2,8 @@ from django.conf import settings
 
 from django.db import models
 from django.urls import reverse
-
+#from django.core.validators import FileExtensionValidator
+from .validators import image_validation_extension,video_validation_extention
 #from django.db.models.signals import post_save
 from datetime import datetime
 from plans.models import Plan
@@ -18,7 +19,8 @@ FILM_CHOICES = (
     ('S', 'Sitcom'),
     ('PD', 'Podcast Video'),
     ('SR', 'Series'),
-    ('RS', 'Reality TV Show')
+    ('RS', 'Reality TV Show'),
+    ('H', 'Home Entertainment')
 )
 
 PODCAST_CHOICES = (
@@ -35,10 +37,10 @@ SONG_CHOICES = (
     ('AP', 'AFRO POP'),
     ('RG', 'REGGAE'),
     ('H', 'HOUSE'),
-    ('GN', 'GERIC')
+    ('GN', 'GENERIC')
 )
 
-class Entertainment(models.Model):
+class EntertainmentOption(models.Model):
     slug = models.SlugField()
     title = models.CharField(max_length=120)
     description = models.TextField()
@@ -59,17 +61,86 @@ class Entertainment(models.Model):
 class Movie(models.Model):
     slug = models.SlugField()
     title = models.CharField(max_length=250)
-    entertainment = models.ForeignKey(Entertainment, on_delete=models.SET_NULL, null=True)
+    entertainmentOption = models.ForeignKey(EntertainmentOption, on_delete=models.SET_NULL, null=True)
+    film_type = models.CharField(choices=FILM_CHOICES, default='Home Entertainment', max_length=60)
     position = models.IntegerField()
-    video_url = models.CharField(max_length=300)
-    cover_image = models.ImageField()
+    details = models.TextField()
+    movie = models.FileField(upload_to='videos/',validators=[video_validation_extention])#from validators.py
+    cover_image = models.ImageField(upload_to='images/',validators=[image_validation_extension])
 
     def __str__(self):
-        return self.title
+        return f"{self.title}, {self.movie}, {self.details}, {self.film_type}, {self.cover_image}, {self.entertainmentOption}"
 
     def get_absolute_url(self):
-        return reverse('entertainment:movie-detail',
+        return reverse('entertainments:movie-detail',
                        kwargs={
-                           'entertainment_slug': self.entertainment.slug,
+                           'entertainmentOption_slug': self.entertainmentOption.slug,
                            'movie_slug': self.slug
+                       })
+
+
+class Music(models.Model):
+    slug = models.SlugField()
+    song_name = models.CharField(max_length=250)
+    artist = models.CharField(max_length=250)
+    entertainmentOption = models.ForeignKey(EntertainmentOption, on_delete=models.SET_NULL, null=True)
+    released_date = models.DateField()
+    distribution_rights = models.TextField()
+    music_genre = models.CharField(choices=SONG_CHOICES, default='GENERIC', max_length=60)
+    cover_image = models.ImageField(upload_to='images/',validators=[image_validation_extension])
+    song = models.FileField(upload_to='audios/',validators=[video_validation_extention])#from validators.py
+
+    def __str__(self):
+        return f"{self.song_name}, {self.artist}, {self.released_date}, {self.music_genre}, {self.cover_image}, {self.entertainmentOption}, {self.song}"
+
+    def get_absolute_url(self):
+        return reverse('entertainments:song-detail',
+                       kwargs={
+                           'entertainmentOption_slug': self.entertainmentOption.slug,
+                           'song_slug': self.slug
+                       })
+
+class Podcast(models.Model):
+    slug = models.SlugField()
+    song_name = models.CharField(max_length=250)
+    broadcaster = models.CharField(max_length=250)
+    entertainmentOption = models.ForeignKey(EntertainmentOption, on_delete=models.SET_NULL, null=True)
+    released_date = models.DateField()
+    distribution_rights = models.TextField()
+    podcast_genre = models.CharField(choices=PODCAST_CHOICES , default='Other', max_length=60)
+    cover_image = models.ImageField(upload_to='images/',validators=[image_validation_extension])
+    upload_podcast = models.FileField(upload_to='audios/',validators=[video_validation_extention])#from validators.py
+
+
+    def __str__(self):
+        return f"{self.song_name}, {self.artist}, {self.released_date}, {self.podcast_genre}, {self.cover_image}, {self.entertainmentOption}, {self.song}, {self.distribution_rights}"
+
+    def get_absolute_url(self):
+        return reverse('entertainments:podcast-detail',
+                       kwargs={
+                           'entertainmentOption_slug': self.entertainmentOption.slug,
+                           'podcast_slug': self.slug
+                       })
+
+class Comedy(models.Model):
+    slug = models.SlugField()
+    title = models.CharField(max_length=250)
+    comedian = models.CharField(max_length=250)
+    entertainmentOption = models.ForeignKey(EntertainmentOption, on_delete=models.SET_NULL, null=True)
+    released_date = models.DateField()
+    distribution_rights = models.TextField()
+    about_jokes = models.TextField()
+    commic_genre = models.CharField(choices=PODCAST_CHOICES , default='Other', max_length=60)
+    cover_image = models.ImageField(upload_to='images/',validators=[image_validation_extension])
+    upload_comedy = models.FileField(upload_to='audios/',validators=[video_validation_extention])#from validators.py
+
+
+    def __str__(self):
+        return f"{self.song_title}, {self.comedian}, {self.released_date}, {self.about_jokes}, {self.cover_image}, {self.entertainmentOption}, {self.upload_comedy}"
+
+    def get_absolute_url(self):
+        return reverse('entertainments:podcast-detail',
+                       kwargs={
+                           'entertainmentOption_slug': self.entertainmentOption.slug,
+                           'comedy_slug': self.slug
                        })
