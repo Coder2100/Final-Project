@@ -31,10 +31,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'entertainments.apps.EntertainmentsConfig',
-    'accounts.apps.AccountsConfig',
-    'plans.apps.PlansConfig',
     'ads.apps.AdsConfig',
+    'accounts.apps.AccountsConfig',
+    'entertainments.apps.EntertainmentsConfig',
+    'plans.apps.PlansConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
