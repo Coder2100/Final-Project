@@ -10,15 +10,7 @@ from django.contrib.auth import (
     logout,
 )
 from .forms import MyUserLoginForm, MyUserRegistrationForm
-#from . models import Profile
-#from plans.models import Plan, UserPlan, Subscription
-"""
-from plans.views import (
-    get_user_plan,
-    get_user_subscription,
-    get_selected_plan
-)
-"""
+from .models import Profile
 
 # Create your views here.
 
@@ -63,3 +55,9 @@ def logout_view(request):
     return redirect('ads:index')
 
 
+def profile(request):
+    context ={
+        'profiles': Profile.objects.all()
+    }
+
+    return render(request, "accounts/my_profile.html", context)

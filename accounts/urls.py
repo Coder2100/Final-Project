@@ -1,10 +1,12 @@
 from django.urls import path
-from . import views
 
+from django.conf.urls import url
+from .views import profile, register, login_view, logout_view
 app_name = 'accounts'
 
 urlpatterns = [
-    path("register", views.register, name="register"),
-    path("login", views.login_view, name="login"),
-    path("logout", views.logout_view, name="logout"),
+    path("register",register, name="register"),
+    path("login", login_view, name="login"),
+    path("logout", logout_view, name="logout"),
+    url(r'^profile/$', profile, name='profile'),
 ]

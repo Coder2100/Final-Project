@@ -4,7 +4,7 @@ from django.db import models
 from django.urls import reverse
 #from django.core.validators import FileExtensionValidator
 from .validators import image_validation_extension,video_validation_extention
-#from django.db.models.signals import post_save
+
 from datetime import datetime
 from plans.models import Plan
 
