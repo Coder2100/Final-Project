@@ -133,6 +133,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 if DEBUG:
     STRIPE_PUBLISHABLE_KEY = 'pk_test_n0FO4VB28SaCA87naLPJ8lft'
     STRIPE_SECRET_KEY = 'sk_test_yEFWvn0Ao2NUjFenAxUVcBOA'
+    BT_ENVIRONMENT='sandbox'
+    BT_MERCHANT_ID='2hk496484j5grd59'
+    BT_PUBLIC_KEY='mtq35vwrntw25k9b'
+    BT_PRIVATE_KEY='a89c470be4effe941e1b9e846d80b3b9'
 
 else:
     # live keys

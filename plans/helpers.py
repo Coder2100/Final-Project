@@ -7,21 +7,18 @@ import braintree
 from plans.models import OrderItem
 
 def generate_order_id():
-    date_str = date.today().strtime('%Y%m%d')[2:] + str(datetime.datetime.now().second)
+    date_str = date.today().strftime('%Y%m%d')[2:] + str(datetime.datetime.now().second)
     rand_str = "".join([random.choice(string.digits) for count in range(3)])
     return date_str + rand_str
 
-"""
-
-    gateway = brainstree.BraintreeGateway(
-        braintree.Configuration(
-            environment=settings.BT_ENVIRONMENT,
-            merchant_id=settings.BT_MERCHANT_ID,
-            public_key=settings.BT_PUBLIC_KEY,
-            private_key=settings.BT_PRIVATE_KEY
-        )
+gateway = braintree.BraintreeGateway(
+    braintree.Configuration(
+        environment=settings.BT_ENVIRONMENT,
+        merchant_id=settings.BT_MERCHANT_ID,
+        public_key=settings.BT_PUBLIC_KEY,
+        private_key=settings.BT_PRIVATE_KEY
     )
-
+)
 
 def generate_client_token():
     return gateway.client_token.generate()
@@ -31,5 +28,3 @@ def transact(options):
 
 def find_transaction(id):
     return gateway.transaction.find(id)
-
-"""

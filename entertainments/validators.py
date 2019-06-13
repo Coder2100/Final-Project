@@ -1,6 +1,4 @@
 import os
-#from django.core.exceptions import validationError
-
 
 def image_validation_extension(value):
     from django.core.exceptions import ValidationError

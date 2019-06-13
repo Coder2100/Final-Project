@@ -1,24 +1,4 @@
-{% extends 'plans/base.html' %}
-
-{% block post_detail_link %}
-<li>{{ object.title }}</li>
-{% endblock %}
-
-{% block content %}
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-4 col-md-4">
-				<h1>Course Detail View Page</h1>
-				<h3>{{ object.title }}</h3>
-				<p>{{ object.description }}</p>
-				<ol>
-					{% for lesson in object.lessons %}
-					<li><a href="{{ moview.get_absolute_url }}">{{ movie.title }}</a></li>
-					{% endfor %}
-				</ol>
-				
-			</div>
-		</div>
-	</div>
-
-{% endblock %}
+<video with="600" height="240"  controls="">
+            <source src="{{ user.video.url }}" type="video/mp4">
+                Your browser does not support HTML5 video.
+        </video>

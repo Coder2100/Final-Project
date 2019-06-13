@@ -11,8 +11,6 @@ from django.contrib.auth import (
 
 from django.db.models.signals import post_save
 from entertainments.validators import image_validation_extension,video_validation_extention
-#from plans.models import Option
-#from plans.models import Plan
 
 
 # Create your models here.

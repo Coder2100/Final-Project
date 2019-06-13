@@ -1,8 +1,6 @@
 from django.contrib import admin
-from .models import* # EntertainmentOption, Movie
-# Register your models here.
+from .models import* 
 
-admin.site.register(EntertainmentOption)
 admin.site.register( Movie)
 admin.site.register( Comedy)
 admin.site.register( Music)

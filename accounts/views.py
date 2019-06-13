@@ -14,7 +14,6 @@ from .models import Profile
 
 # Create your views here.
 
-
 def login_view(request):
     next = request.GET.get('next')
     form = MyUserLoginForm(request.POST or None)
@@ -48,12 +47,10 @@ def register(request):
     else:
         return redirect('ads:index')
 
-
 @login_required(login_url='accounts:login')
 def logout_view(request):
     logout(request)
     return redirect('ads:index')
-
 
 def profile(request):
     context ={
