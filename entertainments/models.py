@@ -81,7 +81,7 @@ class Podcast(models.Model):
         return f"{self.podcast_name}, {self.artist}, {self.released_date}, {self.podcast_genre}, {self.cover_image}, {self.song}, {self.distribution_rights}"
 
 
-class Comedy(models.Model):
+class Comic(models.Model):
     #slug = models.SlugField()
     title = models.CharField(max_length=250)
     comedian = models.CharField(max_length=250)
@@ -92,7 +92,9 @@ class Comedy(models.Model):
     cover_image = models.ImageField(upload_to='images/',validators=[image_validation_extension])
     upload_comedy = models.FileField(upload_to='audios/')#,validators=[video_validation_extention])#from validators.py
 
-
+    def get_absolute_url(self):
+        return reverse('entertainments:comedy')
+        
     def __str__(self):
         return f"{self.title}, {self.comedian}, {self.released_date}, {self.about_jokes}, {self.cover_image}, {self.upload_comedy}"
 

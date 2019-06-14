@@ -1,6 +1,6 @@
-{% extends "plans/layout.html" %}
+{% extends "plans/base.html" %}
 
-{% block body %}
+{% block content %}
 
  <section>
    <div class="row">
@@ -14,14 +14,14 @@
         <tr>
           <td>{{ forloop.counter }}</td>
           <td>
-            {{ item.option.name }}
+            {{ item.product.name }}
             <span class="pull-right">
-              <a href="{% url 'orders:delete_item' item.id %}" data-balloon="remove this item from cart" class="text-danger" onclick="return confirm_delete();">
+              <a href="{% url 'plans:delete_item' item.id %}" data-balloon="remove this item from cart" class="text-danger" onclick="return confirm_delete();">
                 <i class="fas fa-trash"></i>
               </a>
             </span>
           </td>
-          <td>{{ item.option.price }}</td>
+          <td>{{ item.product.price }}</td>
         </tr>
       {% empty %}
         <tr>
@@ -33,7 +33,7 @@
         <td colspan=2>
           <strong class="pull-right">Order Total:</strong>
         </td>
-
+        
         <td colspan= 1>
           $<strong>{{ order.get_cart_total }}</strong>
         </td>
@@ -41,9 +41,9 @@
       </tr>
       <tr>
         <td colspan=1 >
-          <a href="{% url 'plans:plan_list' %}" class="btn btn-warning pull-left">
+          <a href="{% url 'plans:option' %}" class="btn btn-warning pull-left">
             {% if order %}Continue Shopping{% else %}Add Items to Cart {% endif %}
-          </a>
+          </a> 
         </td>
         <td colspan=2>
           {% if order.get_cart_items %}
@@ -52,7 +52,7 @@
         </td>
       </tr>
     </table>
-
+     
    </div>
  </section>
 {% endblock %}

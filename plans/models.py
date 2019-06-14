@@ -8,14 +8,12 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 from accounts.models import Profile
 
-PLAN_CHOICES = (
-    ('Enterprise', 'ent'),
-    ('Professional', 'pro'),
-    ('Free', 'free')
-)
 class Option(models.Model):
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=4,decimal_places=2)
+    trial_period = models.CharField(max_length=200)
+    details = models.TextField()
+    available_add_ons=models.TextField()
 
     def __str__(self):
         return f"{self.name}"
