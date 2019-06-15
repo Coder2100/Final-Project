@@ -10,7 +10,7 @@
 <div class="container-fluid">
     <div class="row">
         {% for music in musics %}
-        <div class="col-sm-2">
+        <div class="col-sm-3">
 <video id='my-video' class='video-js' controls preload='auto'
 poster='{{ music.cover_image.url }}' data-setup='{}'>
   <source src='{{ music.song.url }}' type='video/mp4'>
