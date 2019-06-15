@@ -1,0 +1,28 @@
+{% extends 'ads/base.html' %}
+
+{% block content %}
+<style type="text/css">
+
+#my-video{
+  width: 100%;
+  cursor: pointer;
+}
+  </style>
+<br>
+<h1>Movie Time!</h1>
+
+<div class="container-fluid">
+<div class="row">
+        {% for movie in movies %}
+    <div class="col-sm-3">
+        <video id='my-video' class='' controls preload='auto' width='640' height='255'
+        poster='{{ movie.cover_image.url }}' data-setup='{}'>
+          <source src='{{ movie.movie.url }}' type='video/mp4'>
+        </video>
+        <p> {{ movie.title }}</p>
+        <p> {{ movie.details }}</p>
+     </div>
+     {% endfor %}
+    </div>
+  </div>
+{% endblock content %}

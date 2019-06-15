@@ -1,0 +1,36 @@
+{% extends 'ads/base.html' %}
+
+{% block content %}
+<style type="text/css">
+    img{
+        height: 400px;
+        width: 100%;
+    }
+body{
+    background-color: lightgray;
+}
+  </style>
+<br>
+<h1>The Best Podcasts of our Time!</h1>
+
+<div class="container-fluid">
+<div class="row">
+        {% for podcast in podcasts%}
+    <div class="col-sm-3">
+         
+        <img src="{{ podcast.cover_image.url }}" alt="{{ podcast.podcast_name}}">
+        <h1>{{ podcast.podcast_name}}</h1>
+        <p>By {{ podcast.broadcaster }}</p>
+        <p>{{ podcast.released_date }} Edition</p>
+        <audio controls>
+                <source src="{{ podcast.upload_podcast.url }}" type="audio/mpeg">
+              Your browser does not support the audio element.
+        </audio>
+       
+    </div>
+    {% endfor %}
+</div>
+</div>
+
+
+{% endblock content %}

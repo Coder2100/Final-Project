@@ -10,9 +10,11 @@ from django.urls import reverse
 
 from .models import Option
 import stripe
+stripe.api_key = settings.STRIPE_SECRET_KEY
 from accounts.models import Profile
 from accounts.views import login_view, register
-from plans.helpers import generate_order_id, generate_client_token, transact
+#from plans.helpers import generate_order_id, generate_client_token, transact
+from plans.extras import generate_order_id, transact, generate_client_token
 from .models import Order, OrderItem, Transaction
 
 import datetime
@@ -87,7 +89,7 @@ def checkout(request, **kwargs):
                 charge = stripe.Charge.create(
                     amount=100*existing_order.get_cart_total(),
                     currency='usd',
-                    description='Example charge',
+                    description='iStream subscrion fees',
                     source=token,
                 )
 
@@ -117,7 +119,7 @@ def checkout(request, **kwargs):
                 for x in result.errors.deep_errors:
                     messages.info(request, x)
                 return redirect(reverse('plans:checkout'))
-
+            
     context = {
         'order': existing_order,
         'client_token': client_token,

@@ -43,14 +43,14 @@ class Movie(models.Model):
     film_type = models.CharField(choices=FILM_CHOICES, default='Home Entertainment', max_length=60)
     #position = models.IntegerField()
     details = models.TextField()
-    movie = models.FileField(upload_to='videos/')#,validators=[video_validation_extention])#from validators.py
+    movie = models.FileField(upload_to='videos/',validators=[video_validation_extention])#from validators.py
     cover_image = models.ImageField(upload_to='images/',validators=[image_validation_extension])
 
     def get_absolute_url(self):
-        return reverse('entertainments:entertainment_list')
+        return reverse('entertainments:movie.html')
 
     def __str__(self):
-        return f"{self.title}, {self.movie}, {self.details}, {self.film_type}, {self.cover_image}"
+        return f"{self.title}, {self.movie}, {self.details},{self.cover_image}"
 
 class Music(models.Model):
    # slug = models.SlugField()
@@ -62,12 +62,13 @@ class Music(models.Model):
     cover_image = models.ImageField(upload_to='images/',validators=[image_validation_extension])
     song = models.FileField(upload_to='audios/',validators=[video_validation_extention])#from validators.py
 
+    def get_absolute_url(self):
+        return reverse('entertainments:music')
+
     def __str__(self):
         return f"{self.song_title}, {self.artist}, {self.released_date}, {self.music_genre}, {self.cover_image},{self.song}"
 
-  
 class Podcast(models.Model):
-    #slug = models.SlugField()
     podcast_name = models.CharField(max_length=250)
     broadcaster = models.CharField(max_length=250)
     released_date = models.DateField()
@@ -76,9 +77,11 @@ class Podcast(models.Model):
     cover_image = models.ImageField(upload_to='images/',validators=[image_validation_extension])
     upload_podcast = models.FileField(upload_to='audios/',validators=[video_validation_extention])#from validators.py
 
+    def get_absolute_url(self):
+        return reverse('entertainments:podcast')
 
     def __str__(self):
-        return f"{self.podcast_name}, {self.artist}, {self.released_date}, {self.podcast_genre}, {self.cover_image}, {self.song}, {self.distribution_rights}"
+        return f"{self.podcast_name}, {self.broadcaster}, {self.released_date}, {self.podcast_genre}, {self.cover_image}, {self.upload_podcast}"
 
 
 class Comic(models.Model):
@@ -90,7 +93,7 @@ class Comic(models.Model):
     about_jokes = models.TextField()
     #commic_genre = models.CharField(choices=PODCAST_CHOICES , default='Other', max_length=60)
     cover_image = models.ImageField(upload_to='images/',validators=[image_validation_extension])
-    upload_comedy = models.FileField(upload_to='audios/')#,validators=[video_validation_extention])#from validators.py
+    upload_comedy = models.FileField(upload_to='audios/',validators=[video_validation_extention])#from validators.py
 
     def get_absolute_url(self):
         return reverse('entertainments:comedy')

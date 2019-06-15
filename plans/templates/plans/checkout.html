@@ -138,7 +138,7 @@ function stripeTokenHandler(token) {
               {% for item in order.get_cart_items %}
                 <tr>
                   <td>{{ item }}</td>
-                  <td>${{ item.product.price }}</td>
+                  <td>${{ item.option.price }}</td>
                 </tr>
               {% endfor %}
             </td>

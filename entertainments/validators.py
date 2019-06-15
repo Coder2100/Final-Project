@@ -11,7 +11,7 @@ def video_validation_extention(value):
     from django.core.exceptions import ValidationError
     vid_extention = os.path.splitext(value.name)[1] #return name of if file from the path
     valid_vid_extentions = ['.mp4', '.ogg', '.webm', '.mp3']
-    if vid_extention.lower() in valid_vid_extentions:
+    if not vid_extention.lower() in valid_vid_extentions:
         raise ValidationError(u'Unsupported video extention.')
 
 

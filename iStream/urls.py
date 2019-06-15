@@ -7,16 +7,12 @@ from django.conf.urls import url, include
 
 from django.conf.urls.static import static
 
-
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("ads.urls")),
     path("", include("accounts.urls")),
-   # url(r'^entertainments', include('entertainments.urls')),
-  path('', include('entertainments.urls')),
-   path('', include('plans.urls')),
-    #url(r'^plans/', include('plans.urls', namespace='options')),
+    path('', include('entertainments.urls')),
+    path('', include('plans.urls')),
 ]
 if settings.DEBUG:
 	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

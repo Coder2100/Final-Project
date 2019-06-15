@@ -53,8 +53,10 @@ def logout_view(request):
     return redirect('ads:index')
 
 def profile(request):
+    my_user_profile = Profile.objects.filter(user=request.user).first()
+    my_orders = Order.objects.filter(is_ordered=True, owner=my_user_profile)
+
     context ={
         'profiles': Profile.objects.all()
     }
-
-    return render(request, "accounts/my_profile.html", context)
+    return render(request, "accounts/profile.html", context)
