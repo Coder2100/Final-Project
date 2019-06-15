@@ -38,10 +38,8 @@ SONG_CHOICES = (
 
 
 class Movie(models.Model):
-    #slug = models.SlugField()
     title = models.CharField(max_length=250)
     film_type = models.CharField(choices=FILM_CHOICES, default='Home Entertainment', max_length=60)
-    #position = models.IntegerField()
     details = models.TextField()
     movie = models.FileField(upload_to='videos/',validators=[video_validation_extention])#from validators.py
     cover_image = models.ImageField(upload_to='images/',validators=[image_validation_extension])
@@ -53,7 +51,6 @@ class Movie(models.Model):
         return f"{self.title}, {self.movie}, {self.details},{self.cover_image}"
 
 class Music(models.Model):
-   # slug = models.SlugField()
     song_title = models.CharField(max_length=250)
     artist = models.CharField(max_length=250)
     released_date = models.DateField()
@@ -85,13 +82,11 @@ class Podcast(models.Model):
 
 
 class Comic(models.Model):
-    #slug = models.SlugField()
     title = models.CharField(max_length=250)
     comedian = models.CharField(max_length=250)
     released_date = models.DateField()
     distribution_rights = models.TextField()
     about_jokes = models.TextField()
-    #commic_genre = models.CharField(choices=PODCAST_CHOICES , default='Other', max_length=60)
     cover_image = models.ImageField(upload_to='images/',validators=[image_validation_extension])
     upload_comedy = models.FileField(upload_to='audios/',validators=[video_validation_extention])#from validators.py
 
@@ -101,4 +96,18 @@ class Comic(models.Model):
     def __str__(self):
         return f"{self.title}, {self.comedian}, {self.released_date}, {self.about_jokes}, {self.cover_image}, {self.upload_comedy}"
 
-   
+class CommunityContent(models.Model):
+    title = models.CharField(max_length=40)
+    #user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    thumbnail = models.ImageField(upload_to='images/community',validators=[image_validation_extension])
+    video = models.FileField(upload_to='audios/community',validators=[video_validation_extention])
+    posted_date  = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse('entertainments:community')
+    
+    def __str__(self):
+        return f"{self.title}, {self.thumbnail}, {self.video}"
+    
+
+    

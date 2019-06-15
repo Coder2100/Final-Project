@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404
-#from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView, View
+
+from django.views.generic import CreateView
 from django.views import generic
-#from .models import *
-from .models import Comic, Music,Podcast, Movie
+
+from .models import Comic, Music,Podcast, Movie, CommunityContent
+from .forms import UploadForm
 
 def comic(request):
     context = {
@@ -28,3 +29,15 @@ def music(request):
         "musics": Music.objects.all()
     }
     return render(request, "entertainments/music.html", context)
+
+def community_content(request):
+    context = {
+        "community_contents": CommunityContent.objects.all()
+    }
+
+    return render(request, "entertainments/community.html", context)
+
+class CreateFileView(CreateView):
+    model = CommunityContent
+    form_class = UploadForm
+    template_name = 'entertainments/upload.html'
