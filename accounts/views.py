@@ -54,7 +54,7 @@ def logout_view(request):
 
 def profile(request):
     my_user_profile = Profile.objects.filter(user=request.user).first()
-    my_orders = Order.objects.filter(is_ordered=True, owner=my_user_profile)
+    #my_orders = Order.objects.filter(is_ordered=True, owner=my_user_profile)
 
     context ={
         'profiles': Profile.objects.all()

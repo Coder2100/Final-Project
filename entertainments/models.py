@@ -7,8 +7,8 @@ from .validators import image_validation_extension,video_validation_extention
 
 from datetime import datetime
 
-import stripe
-stripe.api_key = settings.STRIPE_SECRET_KEY
+#import stripe
+#stripe.api_key = settings.STRIPE_SECRET_KEY
 
 FILM_CHOICES = (
     ('D', 'Drama'),
