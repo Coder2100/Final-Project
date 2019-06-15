@@ -19,8 +19,8 @@ def index(request):
 def ads(request):
     context ={ 
         #"footers":Footer.objects.all(),
-        #"BurnerSlides": BurnerSlide.objects.all(),
-        "trendingAds":TrendingAd.objects.all(),
+        "BurnerSlides": BurnerSlide.objects.all(),
+        #"trendingAds":TrendingAd.objects.all(),
         #"stories":Story.objects.all()
     }
     return render(request, 'entertainments/community.html', context)

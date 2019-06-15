@@ -9,8 +9,53 @@
 .mid{
     text-align: center;
 }
+.stories{
+  height: 400px;
+  background-color: blueviolet;
+  width: 100%;
+  
+}
+.text{
+  color:white;
+  text-align: center;
+  margin: 45px auto;
+}
+
+#mybutton{
+  border: none;
+  cursor: pointer;
+}@keyframes move {
+     0% {
+        left: 0%;
+     }
+    50% {
+      left: 50%;
+    }
+     100% {
+        left: 0%;
+     }
+ }
+
+
+
+h3{
+  position: relative;
+  animation-name: move;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+}
 </style>
 <br>
+<div class="stories">
+  <div class="row">
+    <div class="col-sm-12 text-center">
+      <h3 class="text">Taylor Swift Tour Dates</h3>
+      <h6 class="text">Tay appeared onstage at the iconic LGBTQ+ bar in New York for an acoustic rendition of her 1989 hit, wishing everyone a “happy pride month”Grab your tickets today!</h6>
+      <p><a class="btn btn-lg btn-success " href="#" role="button" id="mybutton">Buy ticket here</a></p>
+    </div>
+  </div>
+</div>
 <h1>Find The Talent and Share Yours!</h1>
 <div class="container-fluid">
     <div class="row">
@@ -31,5 +76,19 @@ poster='{{ local.thumbnail.url }}' data-setup='{}'>
 </div>
 </div>
 
+<script>
+  /** slide show function*/
+    document.addEventListener('DOMContentLoaded', () => {
+        const h3 = document.querySelector('h3');
+        h3.style.animationPlayState  = 'paused';
+        document.querySelector('#mybutton').onclick = () => {
+            if (h3.style.animationPlayState  === 'paused')
+                h3.style.animationPlayState = 'running';
+            else
+                h3.style.animationPlayState  = 'paused';
+        };
+    });
+</script>
 <script src='https://vjs.zencdn.net/7.5.5/video.js'></script>
+
 {% endblock content%}

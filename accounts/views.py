@@ -24,7 +24,7 @@ def login_view(request):
         login(request, user)
         if next:
             return redirect(next)
-        return redirect('ads:index')
+        return redirect('entertainments:community')
     return render(request, 'accounts/login.html', {'form': form})
 
 def register(request):
@@ -45,7 +45,7 @@ def register(request):
             return redirect('ads:index')
         return render(request, 'accounts/register.html', {'form': form})
     else:
-        return redirect('ads:index')
+        return redirect('entertainments:community')
 
 @login_required(login_url='accounts:login')
 def logout_view(request):

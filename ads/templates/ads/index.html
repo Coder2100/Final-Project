@@ -10,7 +10,6 @@
 <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
 <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
 <style>
-
 .more {
   background-color: #239346;
   color: #ffffff;
@@ -24,6 +23,15 @@ hr{
   background-color: #239346;
 }
 
+.less{
+  background-color: black;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-family: Raleway;
+  cursor: pointer;
+}
 </style>
 <main role="main">
 
@@ -88,8 +96,9 @@ hr{
             <div class="col-sm-3">
               <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="DodgerBlue"/><text x="50%" y="50%" fill="white" dy=".3em">{{ trendingAd.circle_title  }}</text></svg>
               <h2>{{ trendingAd.heading }}</h2>
-              <p>{{ trendingAd.content }}</p>
-              <p><a class="more" href="#" role="button">{{ trendingAd.button_message }}&raquo;</a></p>
+             
+              <p id="service-info">{{ trendingAd.content }}</p>
+              <p><a class="more" href="#" id="read-more" role="button">{{ trendingAd.button_message }}&raquo;</a></p>
             </div><!-- /.col-lg-4 -->
             {% endfor %}
             </div><!-- /.row -->
@@ -98,7 +107,7 @@ hr{
           <!-- START THE FEATURETTES -->
       
           <hr class="featurette-divider">
-      
+          
           <div class="row featurette">
             <div class="col-md-7">
               <h2 class="featurette-heading">Harvardx Final Project. <span class="text-muted">This is CS50 Web.</span></h2>
@@ -136,7 +145,10 @@ hr{
           <hr class="featurette-divider">
           <!-- /END THE FEATURETTES -->
         </div><!-- /.container -->
+        
         <div class="container">
+            <h4 class="lead">Featured Quality Local Content<span class="text-muted">|The best of the best!</span></h4>
+            <br>
           <!-- /TRENDING COMMUNITY VIDEOS FILTER BY 3 -->
           <div class="row">
               {% for local in community_contents %}
@@ -156,8 +168,6 @@ hr{
       </div>
     </div>
    </main>
+  
    <script src='https://vjs.zencdn.net/7.5.5/video.js'></script>
-
-   <script>
-   </script>
 {% endblock content %}
