@@ -3,7 +3,7 @@ import os
 def image_validation_extension(value):
     from django.core.exceptions import ValidationError
     img_extention = os.path.splitext(value.name)[1]#return path file name
-    valid_img_extentions = ['.jpg', '.png', 'gif']
+    valid_img_extentions = ['.jpg', '.png', 'gif','jpeg']
     if not img_extention.lower() in valid_img_extentions:
         raise ValidationError(u'Unsupported file extention.')
 

@@ -1,6 +1,6 @@
 # CS50 Web Final-Project - Music, Video and Podcast Streaming Platform like YouTube
 
-The App is built with Python's django Framework, Javascript.VideoJS is used for Multimedia files.
+The App is built with Python's django Framework, Javascript.VideoJS,SqlLite3, CSS,Bootstrap,HTML,SVG,JQuery.
 
 #About The App
 
@@ -32,5 +32,17 @@ The user uploads get featured at the buttom of the main website.
 3.Ads
 The Ads app contain the ability for the site owner to add slide shows into a home page and in community content video section.
 
-#Disclaimer
+# There are are folders
+
+
+A. iStream (name of the website)
+is the main application's folder that contains settings and main urls
+
+
+B.media
+This is where all the files get stores from videos to podcast, audio etc.
+It has subfolders to specify the type of multimedia included.The application does have the file validations.You will see on the YouTube video and its embarrassing me there where it cant accept the image from Google. see... https://youtu.be/zvlyYOUlFmU
+
+# Disclaimer
 All the image files, and videos are there for demonstration and i  do not promote them or own their material.
+# Youtube demonstration: https://youtu.be/zvlyYOUlFmU
