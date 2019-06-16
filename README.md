@@ -1,6 +1,6 @@
 # CS50 Web Final-Project - Music, Video and Podcast Streaming Platform like YouTube
 
-The App is built with Python's django Framework, Javascript.VideoJS,SqlLite3, CSS,Bootstrap,HTML,SVG,JQuery.
+The App is built with Python's django Framework, Javascript.VideoJS,SqlLite3, CSS,Bootstrap,HTML,SVG,JQuery.The application is responsive.
 
 #About The App
 
