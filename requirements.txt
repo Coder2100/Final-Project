@@ -123,7 +123,7 @@ stripe==2.15.0
 submit50==2.4.9
 tablib==0.13.0
 tb-nightly==1.14.0a20190301
-tensorflow==2.0.0a0
+tensorflow==2.7.2
 tensorflow-hub==0.4.0
 termcolor==1.1.0
 tf-estimator-nightly==1.14.0.dev2019030115
